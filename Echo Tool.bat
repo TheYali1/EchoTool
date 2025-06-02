@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableDelayedExpansion
-title Silver Tool - by TheYali1
+title ^Echo Tool - by TheYali1
 chcp 65001 >nul
-
 net session >nul 2>&1
 if %errorlevel% neq 0 (
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /b
 )
+:start1
 echo.
 echo                           [38;2;0;100;0m███████╗ [38;2;0;120;0m██████╗██╗  ██╗ [38;2;0;140;0m██████╗     [38;2;0;160;0m████████╗ [38;2;0;180;0m██████╗  [38;2;0;200;0m██████╗ ██╗      [0m
 echo                           [38;2;0;100;0m██╔════╝[38;2;0;120;0m██╔════╝██║  ██║[38;2;0;140;0m██╔═══██╗    [38;2;0;160;0m╚══██╔══╝[38;2;0;180;0m██╔═══██╗[38;2;0;200;0m██╔═══██╗██║      [0m
@@ -40,21 +40,19 @@ set /p opstart=[38;2;0;160;0m%username%^> [0m
 if /i "%opstart%"=="1" (
     call :SendMessage
     pause
-    goto start
+    goto :start
 ) else if /i "%opstart%"=="2" (
     call :SpamMessages
-    goto start
+    goto :start
 ) else if /i "%opstart%"=="3" (
     call :DeleteWebhook
     pause
-    goto start
+    goto :start
 ) else (
     cls
-    goto start
+    goto :start
 )
-
 exit /b
-
 
 :SendMessage
 cls
@@ -82,8 +80,7 @@ powershell -Command "Invoke-RestMethod -Uri '%Webhook%' -Method Post -InFile 'pa
 del payload.json
 echo [38;2;0;160;0mMessage Sent Successfully! [0m
 pause
-exit
-
+goto :start
 
 :SpamMessages
 cls
@@ -112,7 +109,6 @@ del payload.json
 echo [38;2;0;160;0mMessage Sent Successfully! [0m
 goto spam_loop
 
-
 :DeleteWebhook
 cls
 echo.
@@ -126,4 +122,5 @@ echo.
 powershell -Command "Invoke-RestMethod -Uri '%Webhook%' -Method Delete"
 echo [38;2;0;160;0mWebhook Deleted Successfully! [0m
 pause
-exit
+cls
+goto :start1
