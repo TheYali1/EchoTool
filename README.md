@@ -1,6 +1,6 @@
-# 💬 EchoTool
+# 💬 Echo Tool
 
-**EchoTool** is a simple yet powerful tool to control a Discord webhook bot with ease.  
+**Echo Tool** is a simple yet powerful tool to control a Discord webhook bot with ease.  
 Perfect for sending messages, alerts, or automations directly to your server.
 
 ![Screenshot](https://i.imagesup.co/images2/99daf2df5a2bcf3ed8e8f2e956351ce340bfea69.png)
